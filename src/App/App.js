@@ -52,25 +52,28 @@ class App extends Component {
                         exact
                         key={path}
                         path={path}
-                        render={routeProps => (
-                            // <NotefulContext.Provider value={contextValue}>
-                                <NoteListNav
-                                    folders={folders}
-                                    notes={notes}
-                                    {...routeProps}
-                                />
-                            //{/* </NotefulContext.Provider> */}
-                        )}
+                        component={NoteListNav}
+                    //     render={routeProps => (
+                    //         // <NotefulContext.Provider value={contextValue}>
+                    //             <NoteListNav
+                    //                 folders={folders}
+                    //                 notes={notes}
+                    //                 {...routeProps}
+                    //             />
+                    //         //{/* </NotefulContext.Provider> */}
+                    //     )}
                     />
                 ))}
                 <Route
                     path="/note/:noteId"
-                    render={routeProps => {
-                        const { noteId } = routeProps.match.params;
-                        const note = findNote(notes, noteId) || {};
-                        const folder = findFolder(folders, note.folderId);
-                        return <NotePageNav {...routeProps} folder={folder} />;
-                    }}
+                    component={NotePageNav}
+                    // render={routeProps => {
+                    //     const { noteId } = routeProps.match.params;
+                    //     const note = findNote(notes, noteId) || {};
+                    //     const folder = findFolder(folders, note.folderId);
+                    //     return <NotePageNav {...routeProps} folder={folder} 
+                    //     />;
+                    // }}
                 />
                 <Route path="/add-folder" component={NotePageNav} />
                 <Route path="/add-note" component={NotePageNav} />
