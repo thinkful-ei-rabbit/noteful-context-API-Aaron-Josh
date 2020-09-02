@@ -118,9 +118,10 @@ class App extends Component {
     }
 
     render() {
+        
         return (            
             <div className="App">
-                <NotefulContext.Provider>
+                <NotefulContext.Provider value={this.state}>
                 <nav className="App__nav">{this.renderNavRoutes()}</nav>
                 <header className="App__header">
                     <h1>
