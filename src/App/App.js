@@ -53,14 +53,13 @@ class App extends Component {
                         key={path}
                         path={path}
                         component={NoteListNav}
-                    //     render={routeProps => (
-                    //         // <NotefulContext.Provider value={contextValue}>
+                    //     render={routeProps => (                           
                     //             <NoteListNav
                     //                 folders={folders}
                     //                 notes={notes}
                     //                 {...routeProps}
                     //             />
-                    //         //{/* </NotefulContext.Provider> */}
+                    //         
                     //     )}
                     />
                 ))}
@@ -90,19 +89,20 @@ class App extends Component {
                         exact
                         key={path}
                         path={path}
-                        render={routeProps => {
-                            const { folderId } = routeProps.match.params;
-                            const notesForFolder = getNotesForFolder(
-                                notes,
-                                folderId
-                            );
-                            return (
-                                <NoteListMain
-                                    {...routeProps}
-                                    notes={notesForFolder}
-                                />
-                            );
-                        }}
+                        component={NoteListMain}
+                        // render={routeProps => {
+                        //     const { folderId } = routeProps.match.params;
+                        //     const notesForFolder = getNotesForFolder(
+                        //         notes,
+                        //         folderId
+                        //     );
+                        //     return (
+                        //         <NoteListMain
+                        //             {...routeProps}
+                        //             notes={notesForFolder}
+                        //         />
+                        //     );
+                        // }}
                     />
                 ))}
                 <Route
