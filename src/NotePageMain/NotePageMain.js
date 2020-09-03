@@ -2,14 +2,15 @@ import React from 'react'
 import Note from '../Note/Note'
 import './NotePageMain.css'
 import NotefulContext from '../NotefulContext'
-import { getNotesForFolder, findNote, findFolder } from '../notes-helpers';
+import { findNote, } from '../notes-helpers';
 
 export default class NotePageMain extends React.Component {
   static contextType = NotefulContext;
 
   render(){
+    const { notes=[] } = this.context
     const { noteId } = this.props.match.params;
-    const note = findNote(this.context.notes, noteId);
+    const note = findNote(notes, noteId) || { content: ''};
 
     return (
     <section className='NotePageMain'>
@@ -19,7 +20,7 @@ export default class NotePageMain extends React.Component {
         modified={note.modified}
       />
       <div className='NotePageMain__content'>
-        {this.props.note.content.split(/\n \r|\n/).map((para, i) =>
+        {note.content.split(/\n \r|\n/).map((para, i) =>
           <p key={i}>{para}</p>
         )}
       </div>
