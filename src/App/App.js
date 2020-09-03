@@ -37,14 +37,15 @@ class App extends Component {
         
     }
 
+    handleDeleteNote = noteId => {
+        this.setState({
+            notes: this.state.notes.filter(note => note.id !== noteId)
+        });
+    }
+
     renderNavRoutes() {
-        const {notes, folders} = this.state
-        // const contextValue = {
-        //     folders: this.state.folders,
-        //     notes: this.state.notes,
-        //     addFolder: this.addFolder,
-        //     addNote:this.addNote
-        // }
+        // const {notes, folders} = this.state
+        
         return (
             <>
                 {['/', '/folder/:folderId'].map(path => (
@@ -119,10 +120,16 @@ class App extends Component {
     }
 
     render() {
+
+        const value = {
+            notes: this.state.notes,
+            folders: this.state.folders,
+            deleteNote: this.handleDeleteNote
+        }
         
         return (            
             <div className="App">
-                <NotefulContext.Provider value={this.state}>
+                <NotefulContext.Provider value={value}>
                 <nav className="App__nav">{this.renderNavRoutes()}</nav>
                 <header className="App__header">
                     <h1>
